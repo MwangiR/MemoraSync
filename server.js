@@ -19,7 +19,7 @@ app.get("/notes", (req, res) => {
 });
 
 app.get("/api/notes", async (req, res) => {
-  const data = await fs.readFile("./db/db.json", "utf8");
+  const data = await fs.readFile("./db/db.json", { encoding: "utf-8" });
   const jsonData = JSON.parse(data);
   res.json(jsonData);
   console.log(jsonData);

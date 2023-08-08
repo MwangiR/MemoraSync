@@ -3,9 +3,8 @@ const fs = require("fs/promises");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.use(express.static("public"));
 
@@ -29,11 +28,33 @@ app.get("/api/notes", async (req, res) => {
   }
 });
 
-app.post("/api/notes", (req, res) => {
-  fs.readFile("./db/db.json", "utf8", (err, data) => {
-    const jsonData = res.json(JSON.parse(data));
-    console.log(jsonData);
-  });
+app.post("/api/notes", async (req, res) => {
+  const { text, title } = req.body;
+
+  if (text && title) {
+    const newNote = {
+      title,
+      text,
+    };
+
+    const noteData = await fs.readFile("./db/db.json", "utf8");
+    const jsonNote = JSON.parse(noteData);
+
+    jsonNote.push(newNote);
+
+    const noteString = JSON.stringify(jsonNote);
+
+    await fs.writeFile("./db/db.json", noteString, (errr) =>
+      errr ? console.error(errr) : console.log("Note Updated"),
+    );
+    const response = {
+      status: "success",
+      body: newNote,
+    };
+    console.log(response);
+  } else {
+    res.status(500).json({ error: "Internal Server Error" });
+  }
 });
 
 app.listen(PORT, () => {

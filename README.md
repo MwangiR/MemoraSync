@@ -17,7 +17,7 @@
 
 ## Introduction
 
-The Express Notes App is a simple web application that allows users to create, view, and delete notes. It utilizes the Express.js framework to handle server-side operations, and it interacts with a JSON database (`db.json`) to store and manage note data.
+MemoraSync is a simple web application that allows users to create, view, and delete notes. It utilizes the Express.js framework to handle server-side operations, and it interacts with a JSON database (`db.json`) to store and manage note data.
 
 ## Installation
 
@@ -53,7 +53,7 @@ The Express Notes App provides the following API endpoints:
 
 ## Contributing
 
-Contributions are welcome! To contribute to the Express Notes App, follow these steps:
+Contributions are welcome! To contribute to MemoraSync, follow these steps:
 
 1. Fork the repository.
 2. Create a new branch for your feature/fix.

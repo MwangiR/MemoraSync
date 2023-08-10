@@ -1,6 +1,7 @@
 # MemoraSync
 
 # Link
+
 [MemoraSync](https://serene-reaches-76674-262a59e1f12f.herokuapp.com)
 
 ## Table of Contents
@@ -11,8 +12,9 @@
 - [API Endpoints](#api-endpoints)
 - [Technologies Used](#technologies-used)
 - [Contributing](#contributing)
+- [Images](#screenshots)
 - [License](#license)
-  
+
 ## Introduction
 
 The Express Notes App is a simple web application that allows users to create, view, and delete notes. It utilizes the Express.js framework to handle server-side operations, and it interacts with a JSON database (`db.json`) to store and manage note data.
@@ -58,6 +60,11 @@ Contributions are welcome! To contribute to the Express Notes App, follow these 
 3. Make your changes and commit them with descriptive messages.
 4. Push your changes to your fork.
 5. Submit a pull request to the main repository.
+
+## Screenshots
+
+![MemoraSync](./images/Memorasync2.png)
+![MemoraSync](./images/memorasync3.png)
 
 ## License
 

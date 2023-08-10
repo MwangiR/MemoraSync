@@ -51,6 +51,7 @@ app.post("/api/notes", async (req, res) => {
       body: newNote,
     };
     console.log(response);
+    res.json(newNoteData);
   } else {
     res.status(500).json({ error: "Internal Server Error" });
   }

@@ -1,6 +1,7 @@
 const express = require("express");
 const path = require("path");
 const fs = require("fs/promises");
+const uuid = require("uniqid");
 
 const PORT = process.env.PORT || 3001;
 const app = express();
@@ -32,6 +33,7 @@ app.post("/api/notes", async (req, res) => {
     const newNote = {
       title,
       text,
+      id: uuid.process(),
     };
 
     let noteData = await fs.readFile("./db/db.json", { encoding: "utf-8" });
@@ -52,6 +54,19 @@ app.post("/api/notes", async (req, res) => {
   } else {
     res.status(500).json({ error: "Internal Server Error" });
   }
+});
+
+app.delete("/api/notes/:id", async (req, res) => {
+  const { id } = req.params;
+  console.log(id);
+  const noteData = await fs.readFile("./db/db.json", { encoding: "utf-8" });
+  const jsonNote = JSON.parse(noteData);
+  const newNoteData = jsonNote.filter((note) => note.id !== id);
+  const noteString = JSON.stringify(newNoteData, undefined, 4);
+  await fs.writeFile(`./db/db.json`, noteString, (err) =>
+    err ? console.error(err) : console.log(`Note Deleted ${id}`),
+  );
+  res.json(newNoteData);
 });
 
 app.listen(PORT, () => {
